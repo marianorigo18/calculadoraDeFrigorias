@@ -1,4 +1,7 @@
-const form = document.querySelector('#form');
+capturarDatos()
+
+function capturarDatos(){
+    const form = document.querySelector('#form');
 
 form.addEventListener('submit', (e)=>{
     e.preventDefault();
@@ -12,6 +15,7 @@ form.addEventListener('submit', (e)=>{
     calcularFrigorias(inputFrig);
     form.reset();
 })
+}
 
 function calcularFrigorias(frigorias){
     let resultado = Math.floor(frigorias / 0.846 / 220 / 2)

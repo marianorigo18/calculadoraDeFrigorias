@@ -2,15 +2,17 @@ capturarDatos()
 
 function capturarDatos(){
     const form = document.querySelector('#form');
+    const cajaInput = document.querySelector('.cajaInput');
 
 form.addEventListener('submit', (e)=>{
     e.preventDefault();
     let inputFrig = document.querySelector('#inputFrigorias').value
     if(inputFrig == ""){
-        return mostrarAlerta('No se permiten valores vacios', e.target);
+        return mostrarAlerta('No se permiten valores vacios', cajaInput);
     }
     if(!isNaN(inputFrig) == false){
-        return mostrarAlerta('Se debe ingresar solo numeros', e.target)
+        form.reset();
+        return mostrarAlerta('Se debe ingresar solo numeros', cajaInput)
     }
     calcularFrigorias(inputFrig, e.target);
     form.reset();
@@ -24,9 +26,13 @@ function calcularFrigorias(frigorias, referencia){
 
 function mostrarMensaje(result, referencia){
     let mensaje = document.createElement('P');
-    mensaje.textContent = result;
+    mensaje.textContent = 'El consumo de corriente es agual a ' + result+ 'A';
     mensaje.classList.add('mensaje');
-    referencia.appendChild(mensaje)
+
+    let cajaMens = document.createElement('div');
+    cajaMens.className ='cajaMens py-3';
+    cajaMens.appendChild(mensaje)
+    referencia.appendChild(cajaMens);
 }
 
 function mostrarAlerta(mensaje, referencia){
@@ -40,9 +46,16 @@ function mostrarAlerta(mensaje, referencia){
 function limpiarAlert(referencia){
     let alert = referencia.querySelector('.alert');
     if(alert){
-        alert.remove();
+        alert.remove()
     }
+    borrarAlerta(referencia)
+}
+
+function borrarAlerta(referencia){
     setTimeout(function(){
-        alert.remove();
-    },2000)
+        let alert = referencia.querySelector('.alert');
+        if(alert){
+            alert.remove()
+        }
+    }, 3000)
 }

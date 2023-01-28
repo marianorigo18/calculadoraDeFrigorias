@@ -10,6 +10,7 @@ form.addEventListener('submit', (e)=>{
         return console.log('Se debe ingresar solo numeros')
     }
     calcularFrigorias(inputFrig);
+    form.reset();
 })
 
 function calcularFrigorias(frigorias){

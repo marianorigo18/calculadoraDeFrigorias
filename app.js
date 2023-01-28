@@ -26,13 +26,21 @@ function calcularFrigorias(frigorias, referencia){
 
 function mostrarMensaje(result, referencia){
     let mensaje = document.createElement('P');
-    mensaje.textContent = 'El consumo de corriente es agual a ' + result+ 'A';
+    mensaje.textContent = 'El corriente es igual a ' + result+ 'A';
     mensaje.classList.add('mensaje');
 
     let cajaMens = document.createElement('div');
+    borrarMensaje(referencia)
     cajaMens.className ='cajaMens py-3';
     cajaMens.appendChild(mensaje)
     referencia.appendChild(cajaMens);
+}
+
+function borrarMensaje(referencia){
+    let mensaje = referencia.querySelector('.cajaMens');
+    if(mensaje){
+        mensaje.remove()
+    }
 }
 
 function mostrarAlerta(mensaje, referencia){
